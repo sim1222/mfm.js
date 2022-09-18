@@ -121,6 +121,8 @@ export const language = P.createLanguage({
 			r.emojiCode,
 			// "?[" or "["
 			r.link,
+			// RJ
+			r.dlSite,
 			// http
 			r.url,
 			// block
@@ -179,6 +181,8 @@ export const language = P.createLanguage({
 			r.emojiCode,
 			// "?[" or "["
 			r.link,
+			// RJ
+			r.dlSite,
 			// http
 			r.url,
 			r.text,
@@ -658,6 +662,22 @@ export const language = P.createLanguage({
 			const label = result[2];
 			const url: M.MfmUrl = result[5];
 			return M.LINK(silent, url.props.url, mergeText(label));
+		});
+	},
+
+	dlSite: r => {
+		const mark = P.regexp(/([RVB][JE])(?=[0-9]{5,})/i);
+		const id = P.regexp(/[0-9]{5,}/i);
+		return P.seq([
+			notLinkLabel,
+			mark,
+			id,
+		]).map(result => {
+			const type = result[1] as string;
+			const id = result[2] as string;
+			const baseUrl = 'https://www.dlsite.com/maniax/work/=/product_id/';
+			const url = `${baseUrl}${id}.html`;
+			return M.LINK(true, url, [{ 'type': 'text', 'props': { 'text': `${type}${id}` } }]);
 		});
 	},
 
