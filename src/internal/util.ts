@@ -90,6 +90,9 @@ export function stringifyNode(node: MfmNode): string {
 				return node.props.url;
 			}
 		}
+		case 'dlsite': {
+			return `${stringifyTree(node.children) }`;
+		}
 		case 'link': {
 			const prefix = node.props.silent ? '?' : '';
 			return `${ prefix }[${ stringifyTree(node.children) }](${ node.props.url })`;

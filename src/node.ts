@@ -53,7 +53,7 @@ export type MfmCenter = {
 export const CENTER = (children: MfmInline[]): NodeType<'center'> => { return { type: 'center', children }; };
 
 export type MfmInline = MfmUnicodeEmoji | MfmEmojiCode | MfmBold | MfmSmall | MfmItalic | MfmStrike |
-	MfmInlineCode | MfmMathInline | MfmMention | MfmHashtag | MfmUrl | MfmLink | MfmFn | MfmPlain | MfmText;
+	MfmInlineCode | MfmMathInline | MfmMention | MfmHashtag | MfmUrl | MfmDlSite | MfmLink | MfmFn | MfmPlain | MfmText;
 
 export type MfmUnicodeEmoji = {
 	type: 'unicodeEmoji';
@@ -163,6 +163,16 @@ export type MfmLink = {
 };
 export const LINK = (silent: boolean, url: string, children: MfmInline[]): NodeType<'link'> => { return { type: 'link', props: { silent, url }, children }; };
 
+export type MfmDlSite = {
+	type: 'dlsite';
+	props: {
+		silent: boolean;
+		url: string;
+	};
+	children: MfmInline[];
+};
+export const DLSITE = (silent: boolean, url: string, children: MfmInline[]): NodeType<'dlsite'> => { return { type: 'dlsite', props: { silent, url }, children }; };
+
 export type MfmFn = {
 	type: 'fn';
 	props: {
@@ -206,6 +216,7 @@ export type NodeType<T extends MfmNode['type']> =
 	T extends 'mention' ? MfmMention :
 	T extends 'hashtag' ? MfmHashtag :
 	T extends 'url' ? MfmUrl :
+	T extends 'dlsite' ? MfmDlSite :
 	T extends 'link' ? MfmLink :
 	T extends 'fn' ? MfmFn :
 	T extends 'plain' ? MfmPlain :

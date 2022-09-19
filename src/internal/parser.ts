@@ -677,7 +677,7 @@ export const language = P.createLanguage({
 			const id = result[2] as string;
 			const baseUrl = 'https://www.dlsite.com/maniax/work/=/product_id/';
 			const url = `${baseUrl}${id}.html`;
-			return M.LINK(true, url, [{ 'type': 'text', 'props': { 'text': `${type}${id}` } }]);
+			return M.DLSITE(true, url, [{ 'type': 'text', 'props': { 'text': `${type}${id}` } }]);
 		});
 	},
 
