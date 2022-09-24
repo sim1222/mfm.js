@@ -15,7 +15,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "jest": "jest --coverage",
     "test": "npm run jest && npm run tsd",
-    "postinstall": "npm run build"
+    "postinstall": "tsc"
   },
   "repository": {
     "type": "git",
