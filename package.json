@@ -15,7 +15,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "jest": "jest --coverage",
     "test": "npm run jest && npm run tsd",
-    "postinstall": "tsc"
+    "prepare": "tsc"
   },
   "repository": {
     "type": "git",
@@ -33,11 +33,11 @@
     "jest": "^28.1.2",
     "ts-jest": "^28.0.5",
     "ts-node": "10.8.2",
-    "tsd": "^0.22.0"
+    "tsd": "^0.22.0",
+    "typescript": "4.7.4"
   },
   "dependencies": {
-    "twemoji-parser": "14.0.0",
-    "typescript": "4.7.4"
+    "twemoji-parser": "14.0.0"
   },
   "files": [
     "built",
